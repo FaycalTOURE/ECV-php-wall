@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Lun 13 Avril 2020 à 00:18
+-- Généré le :  Mer 15 Avril 2020 à 15:42
 -- Version du serveur :  5.6.35
 -- Version de PHP :  7.0.15
 
@@ -38,7 +38,8 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `firstname` text NOT NULL,
   `lastname` text NOT NULL,
-  `password` text NOT NULL
+  `password` text NOT NULL,
+  `email` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -57,10 +58,6 @@ ALTER TABLE `posts`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
-
---
--- Contraintes pour les tables exportées
---
 
 --
 -- Contraintes pour la table `posts`

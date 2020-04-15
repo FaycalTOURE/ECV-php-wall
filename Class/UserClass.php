@@ -12,6 +12,7 @@ class UserClass
     protected  $id,
                $firstname,
                $lastname,
+               $email,
                $password;
 
     public function __construct(array $donnees)
@@ -73,6 +74,17 @@ class UserClass
     public function setPassword($password)
     {
         $this->password = $password;
+        return $this;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
         return $this;
     }
 

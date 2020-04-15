@@ -51,7 +51,7 @@ class PostsManager
 
     public function getPosts(UserClass $user)
     {
-        $result = $this->db->query('SELECT *  FROM '. $this->current_table_name . 'LEFT JOIN user ON user_id = ' . $user->getId());
+        $result = $this->db->query('SELECT *  FROM '. $this->current_table_name);
 
         $posts = [];
 
