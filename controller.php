@@ -24,6 +24,18 @@ function post($user = null, $db, $currentMessage = null){
     require 'templates/post.php';
 }
 
+function addPost($user = null, $db, $post){
+    $postManager = new PostsManager($db);
+    $userManager = new UserManager($db);
+
+    $user = $userManager->getUser($user);
+    $user = new UserClass($user);
+    $post = new PostsClass(['text' => $post, 'user_id' => $user]);
+
+    $postManager->addPost($post, $user);
+    redirect_to('Location: index.php/?action=post&user=' .$user->getEmail());
+}
+
 function editPost($user = null, $db){
 
 }
@@ -31,7 +43,7 @@ function editPost($user = null, $db){
 function deletePost($user = null, $db, $id){
     $postManager = new PostsManager($db);
     $postManager->deletePost($id);
-    post($user, $db, 'Votre post à bien été supprimmé !');
+    redirect_to('Location: index.php/?action=post&user=' .$user);
 }
 
 function redirect_to($url){

@@ -6,9 +6,17 @@
 <? if ($message) : ?>
     <div class="alert alert-success" role="alert"><?= $message ?></div>
 <? endif; ?>
-<h4>
-    Welcome <?= $user['firstname'] . ' ' .  $user['lastname']  ?>
-</h4>
+<div class="d-flex flex-row">
+    <h4 class="mr">
+        Welcome <?= $user['firstname'] . ' ' .  $user['lastname']  ?>
+    </h4>
+    <div>
+        <form method="post">
+            <input type="text" name="post">
+            <button class="btn btn-primary" name="submit" type="submit">ajouter !</button>
+        </form>
+    </div>
+</div>
 <div class="list-group">
     <? foreach ($posts as $post) : ?>
         <a href="#" class="list-group-item list-group-item-action">

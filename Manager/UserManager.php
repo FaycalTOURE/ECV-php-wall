@@ -15,12 +15,11 @@ class UserManager
     {
         $q = $this->db->prepare('INSERT INTO ' . $this->current_table_name . '(id, firstname, email, lastname, password) VALUES(:id, :firstname, :email, :lastname, :password)');
 
-        $q->bindValue(':id', $user->getID());
+        $q->bindValue(':id', $this->db->lastInsertId());
         $q->bindValue(':firstname', $user->getFirstname());
         $q->bindValue(':lastname', $user->getLastname());
         $q->bindValue(':email', $user->getEmail());
         $q->bindValue(':password', $user->getPassword());
-
 
         $q->execute();
 

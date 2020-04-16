@@ -11,20 +11,20 @@ class PostsManager
         $this->db = $db;
     }
 
-    public function addPost(PostsClass $post)
+    public function addPost(PostsClass $post, UserClass $user)
     {
-        $q = $this->db->prepare('INSERT INTO ' . $this->current_table_name . '(id, text, date, password ) VALUES(:id, :text, :date, :password)');
+        $q = $this->db->prepare('INSERT INTO ' . $this->current_table_name . '(id, text, date, user_id) VALUES(:id, :text, :date, :user_id)');
 
         $q->bindValue(':id', $post->getID());
         $q->bindValue(':text', $post->getText());
-        $q->bindValue(':date', $post->getDate());
-        $q->bindValue(':user_id', $post->getUserId());
+        $q->bindValue(':date', date('Y-m-d H:i:s'));
+        $q->bindValue(':user_id', $user->getId());
+
+        $q->execute();
 
         $post->hydrate([
             'id' => $this->db->lastInsertId()
         ]);
-
-        $q->execute();
     }
 
     public function countPosts()

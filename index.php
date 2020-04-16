@@ -7,7 +7,14 @@ require('controller.php');
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'post') {
-        post($_GET['user'], $db);
+        if(isset($_POST['post']) && strlen($_POST['post']) > 0){
+            addPost($_GET['user'], $db, $_POST['post']);
+        }else{
+            post($_GET['user'], $db);
+        }
+    }
+    elseif ($_GET['action'] == 'addPost') {
+        addPost($_GET['user'], $db, $_POST['post']);
     }
     elseif ($_GET['action'] == 'editPost') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
