@@ -1,4 +1,3 @@
-<!-- templates/show.php -->
 <?php $title = $title_header ?>
 
 <?php

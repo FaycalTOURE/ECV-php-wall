@@ -11,10 +11,18 @@ if (isset($_GET['action'])) {
     }
     elseif ($_GET['action'] == 'editPost') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            editPost();
+            editPost($_GET['user'], $db, $_GET['id']);
         }
         else {
-            echo 'Erreur : aucun identifiant de billet envoyé';
+            echo 'Erreur : aucun identifiant envoyé';
+        }
+    }
+    elseif ($_GET['action'] == 'deletePost') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            deletePost($_GET['user'], $db, $_GET['id']);
+        }
+        else {
+            echo 'Erreur : aucun identifiant envoyé';
         }
     }
     elseif ($_GET['action'] == 'createAccount'){

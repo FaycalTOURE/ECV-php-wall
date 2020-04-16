@@ -14,22 +14,24 @@ function createAccount($db){
     require 'templates/form.php';
 }
 
-function post($user = null, $db){
+function post($user = null, $db, $currentMessage = null){
     $title_header = 'Derniers posts';
     $userManager = new UserManager($db);
     $postManager = new PostsManager($db);
     $user = $userManager->getUser($user);
     $posts = $postManager->getPosts(new UserClass($user));
-    $message = null;
+    $message = $currentMessage;
     require 'templates/post.php';
 }
 
-function editPost(){
+function editPost($user = null, $db){
 
 }
 
-function deletePost(){
-
+function deletePost($user = null, $db, $id){
+    $postManager = new PostsManager($db);
+    $postManager->deletePost($id);
+    post($user, $db, 'Votre post à bien été supprimmé !');
 }
 
 function redirect_to($url){

@@ -44,14 +44,28 @@ class PostsManager
         $q->execute();
     }
 
-    public function deletePost(PostsClass $post)
+    public function deletePost($postId)
     {
-        $this->db->exec('DELETE FROM ' .$this->current_table_name. ' WHERE id = '.$post->getID());
+        $this->db->exec('DELETE FROM ' .$this->current_table_name. ' WHERE id = '. $postId);
     }
 
-    public function getPosts(UserClass $user)
+    public function getPosts()
     {
+
         $result = $this->db->query('SELECT *  FROM '. $this->current_table_name);
+
+        $posts = [];
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $posts[] = $row;
+        }
+        return $posts;
+    }
+
+    public function getPostsByUser()
+    {
+
+        $result = $this->db->query('SELECT *  FROM '. $this->current_table_name . ' LEFT JOIN user ON posts.user_id = user.id ORDER BY posts.id');
 
         $posts = [];
 
